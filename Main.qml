@@ -10,7 +10,7 @@ Window {
     height: (width / 16) * 10
     visible: true
     title: qsTr("Hello World")
-    // flags: Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint
+    flags: Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint
 
     Rectangle {
         id: root
@@ -120,7 +120,8 @@ Window {
                     source: "pic/close.png"
                     size: root.iconSize
                     onClicked: {
-                        console.log("关机键")
+                        Qt.quit()
+
                     }
                 }
 
@@ -284,7 +285,12 @@ Window {
                 anchors.right: right.right
                 anchors.margins: 50
                 height: 100
-                color: "black"
+                color: "transparent"
+
+                ControlsBelow{
+                    id: controlsBelow
+                    anchors.fill: parent
+                }
             }
         }
     }
