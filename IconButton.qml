@@ -14,7 +14,6 @@ Button{
         radius: 40
     }
 
-
     Image {
         id: icon
         anchors.centerIn: parent

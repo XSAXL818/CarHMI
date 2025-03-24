@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Shapes
+import QtQuick.Controls
 
 Rectangle{
     id: root
@@ -9,6 +10,16 @@ Rectangle{
 
     property int lrmargin: 70
     property real perWidth: (width-lrmargin*2)/9
+
+    signal leftTemperatureChanged( int temp )
+    signal rightTemperatureChanged( int temp )
+    signal carBtnClick
+    signal navigationBtnClick
+    signal fanBtnClick
+    signal airBtnClick
+    signal defogBtnClick
+    signal musicBtnClick
+    signal bookBtnClick
 
     Shape{
         anchors.fill: parent
@@ -71,68 +82,106 @@ Rectangle{
 
     Row{
         width: root.perWidth*9
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        LeftButton{
+        IconButton{
+            id: carBtn
             width: root.perWidth
-            height: 100
+            height: root.height
             size: 50
-            source: "pic/back.png"
-        }
+            source: "pic/car.png"
 
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
+            onClick: {
+                root.carBtnClick()
+            }
         }
+        IconButton{
+            id: navigationBtn
+            width: root.perWidth
+            height: root.height
+            size: 40
+            source: "pic/navigation.png"
 
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
-        }
-        LeftButton{
-            width: root.perWidth
-            height: 100
-            size: 50
-            source: "pic/back.png"
+            onClick: {
+                root.navigationBtnClick()
+            }
         }
 
+
+        IconButton{
+            id: fanBtn
+            width: root.perWidth
+            height: root.height
+            size: 50
+            source: "pic/fan.png"
+            onClick: {
+                root.fanBtnClick()
+            }
+        }
+
+
+        // 进阶版
+        TemperatureControl {
+            id: leftTempControl
+            width: root.perWidth
+            height: root.height
+            onTemperatureChanged: (temp) =>{
+                root.leftTemperatureChanged(temp)
+            }
+        }
+        IconButton{
+            id: airBtn
+            width: root.perWidth
+            height: root.height
+            size: 50
+            source: "pic/air.png"
+
+            onClick: {
+                root.airBtnClick()
+            }
+        }
+        TemperatureControl{
+            id: rightTempControl
+            width: root.perWidth
+            height: root.height
+            onTemperatureChanged: (temp) =>{
+                root.rightTemperatureChanged(temp)
+            }
+        }
+
+        IconButton{
+            id: defogBtn
+            width: root.perWidth
+            height: root.height
+            size: 50
+            source: "pic/defog.png"
+
+            onClick: {
+                root.defogBtnClick()
+            }
+        }
+
+        IconButton{
+            id: musicBtn
+            width: root.perWidth
+            height: root.height
+            size: 50
+            source: "pic/music.png"
+
+            onClick: {
+                root.musicBtnClick()
+            }
+        }
+        IconButton{
+            id: bookBtn
+            width: root.perWidth
+            height: root.height
+            size: 50
+            source: "pic/book.png"
+
+            onClick: {
+                root.bookBtnClick()
+            }
+        }
     }
-
-
-
 }

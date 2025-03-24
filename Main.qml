@@ -64,7 +64,7 @@ Window {
 
                 }
 
-                LeftButton{
+                IconButton{
                     id: backBtn
                     width: parent.width
                     height: root.leftHeight
@@ -79,7 +79,7 @@ Window {
                         }
                     }
                 }
-                LeftButton{
+                IconButton{
                     id: homeBtn
                     width: parent.width
                     height: root.leftHeight
@@ -91,7 +91,7 @@ Window {
                     }
                 }
 
-                LeftButton{
+                IconButton{
                     id: menuBtn
                     width: parent.width
                     height: root.leftHeight
@@ -101,7 +101,7 @@ Window {
                         console.log("菜单")
                     }
                 }
-                LeftButton{
+                IconButton{
                     id: closeWiseBtn
                     width: parent.width
                     height: root.leftHeight
@@ -113,7 +113,7 @@ Window {
                     }
                 }
 
-                LeftButton{
+                IconButton{
                     id: closeBtn
                     width: parent.width
                     height: root.leftHeight
@@ -284,12 +284,49 @@ Window {
                 anchors.left: right.left
                 anchors.right: right.right
                 anchors.margins: 50
-                height: 100
+                height: 130
                 color: "transparent"
 
                 ControlsBelow{
                     id: controlsBelow
                     anchors.fill: parent
+
+                    onLeftTemperatureChanged: (temp) => {
+                        console.log("温度(左)调节为："+temp)
+                    }
+
+                    onRightTemperatureChanged: (temp) => {
+                        console.log("温度(右)调节为："+temp)
+                    }
+
+                    onCarBtnClick: {
+                        console.log("bottom-car")
+                    }
+
+                    onNavigationBtnClick: {
+                        console.log("bottom-navigation")
+                    }
+
+                    onFanBtnClick: {
+                        console.log("bottom-fan")
+                    }
+
+                    onAirBtnClick: {
+                        rCenter.source = "PageAirConditioner.qml"
+                    }
+
+                    onDefogBtnClick: {
+                        console.log("bottom-defog")
+                    }
+
+                    onMusicBtnClick: {
+                        console.log("bottom-music")
+                    }
+
+                    onBookBtnClick: {
+                        console.log("bottom-book")
+                    }
+
                 }
             }
         }
