@@ -1,6 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
- #include <QQuickStyle>
+#include <QQuickStyle>
 
 int main(int argc, char *argv[])
 {
