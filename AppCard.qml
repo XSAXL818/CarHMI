@@ -33,78 +33,73 @@ Rectangle {
     }
 
     Rectangle{
+        id: cont
         width: root.width
         height: root.height-10
         anchors.topMargin: 10
         anchors.top: parent.top
+        anchors.left: parent.left
+        property real myHeight: height/10
         color: "transparent"
         Column{
             spacing: 5
             anchors.fill: parent
-            property real myHeight: height/10
-            Row{
+            Rectangle{
                 id: header
                 width: parent.width
-                height: parent.myHeight*1.5
-                spacing: 10
-                Rectangle{
-                    width: parent.width
+                height: cont.myHeight*1.3
+                color:"transparent"
+
+                RoundedIcon{
+                    id: icon
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    size: parent.height-15
+                    iconSource: root.iconSource
+                    anchors.verticalCenter: parent.verticalCenter
+                }
+
+                Text{
+                    id: appName
+                    anchors.left: icon.right
+                    anchors.leftMargin: 10
+                    width: parent.width-icon.width
                     height: parent.height
-                    color:"transparent"
-
-                    RoundedIcon{
-                        id: icon
-                        anchors.left: parent.left
-                        anchors.leftMargin: 20
-                        size: parent.height-10
-                        iconSource: root.iconSource
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
-
-                    Text{
-                        id: appName
-                        anchors.left: icon.right
-                        anchors.leftMargin: 10
-                        width: parent.width-icon.width
-                        height: parent.height
-
-                        verticalAlignment: Text.AlignVCenter
-
-                        font.pixelSize: 20
-                        color: root.appColor
-                        text: root.app
-                    }
+                    verticalAlignment: Text.AlignVCenter
+                    font.pixelSize: 20
+                    color: root.appColor
+                    text: root.app
                 }
             }
 
+
+
             Rectangle{
-                width: parent.width
-                height: parent.myHeight*5
-                anchors.top: header.bottom
-                anchors.left: parent.left
+                id: rectCenter
+                width: cont.width
+                height: cont.myHeight*5.5
                 color: "transparent"
-                // color: "orange"
 
                 Loader{
                     id: center
-                    anchors.fill: parent
+                    width: parent.width-30
+                    height: parent.height
+                    anchors.centerIn: parent
                     sourceComponent: root.centerComponent
                 }
             }
 
             Rectangle{
-                width: parent.width-30
-                anchors.left: parent.left
-                anchors.leftMargin: 15
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 10
-                height: parent.myHeight*2.5
+                width: cont.width
+                height: cont.myHeight*2.3
                 color: "transparent"
                 // color: "orange"
 
                 Loader{
                     id: bottom
-                    anchors.fill: parent
+                    width: parent.width-30
+                    height: parent.height
+                    anchors.centerIn: parent
                     sourceComponent: root.bottomComponent
                 }
             }

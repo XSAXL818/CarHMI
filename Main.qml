@@ -272,8 +272,13 @@ Window {
             Loader{
                 id: rCenter
                 anchors.top: rTop.bottom
-                height: right.height-rTop.height
-                width: right.width
+                anchors.topMargin: 20
+                height: root.height-rTop.height-rBottom.height-60
+                width: right.width-70
+                anchors.left: parent.left
+                anchors.leftMargin: 50
+                anchors.right: parent.right
+                anchors.rightMargin: 20
 
                 source: "Home.qml"
             }
@@ -283,8 +288,9 @@ Window {
                 anchors.bottom: right.bottom
                 anchors.left: right.left
                 anchors.right: right.right
-                anchors.margins: 50
-                height: 130
+                anchors.leftMargin: 50
+                anchors.bottomMargin: 20
+                height: 120
                 color: "transparent"
 
                 ControlsBelow{

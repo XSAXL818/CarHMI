@@ -1,4 +1,6 @@
 import QtQuick
+import Qt5Compat.GraphicalEffects
+import QtQuick.Shapes
 
 Rectangle {
     id: root
@@ -8,8 +10,9 @@ Rectangle {
     property real perWidth: width/10
 
     signal clickLeft
-    signal clickCenter
+    signal clickCenter(bool isPlay)
     signal clickRight
+
 
     IconButton{
         id: left
@@ -48,7 +51,7 @@ Rectangle {
         size: 40
         property bool isPlay: false
 
-        source: isPlay? "pic/music_play.png" : "pic/music_pause.png"
+        source: isPlay ?  "pic/music_pause.png" : "pic/music_play.png"
 
         // 设置缩放动画行为
         Behavior on scale {
@@ -60,7 +63,7 @@ Rectangle {
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                root.clickCenter()
+                root.clickCenter(center.isPlay)
                 center.isPlay = !center.isPlay
             }
             onPressed: {

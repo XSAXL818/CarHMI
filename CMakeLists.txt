@@ -20,31 +20,32 @@ qt_add_qml_module(appCarHMI
         Main.qml
         QML_FILES Home.qml
         QML_FILES Page1.qml
-        RESOURCES pic/favicon.ico pic/Loong1.png pic/Loong128.png pic/power.jpg
+        RESOURCES  pic/Loong1.png pic/Loong128.png pic/power.jpg
         QML_FILES
         QML_FILES ProfilePicture.qml
         QML_FILES GlassRect.qml
         QML_FILES IconButton.qml
         RESOURCES pic/back.png
         RESOURCES pic/Home.png
-        RESOURCES pic/back.png pic/clockwise.png pic/close.png pic/favicon.ico pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/power.jpg
+        RESOURCES pic/back.png pic/clockwise.png pic/close.png  pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/power.jpg
         QML_FILES ControlsBelow.qml
         QML_FILES TemperatureControl.qml
-        RESOURCES pic/air.png pic/back.png pic/book.png pic/car.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png pic/favicon.ico pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg
+        RESOURCES pic/air.png pic/back.png pic/book.png pic/car.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png  pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg
         QML_FILES PageAirConditioner.qml
-        RESOURCES pic/air.png pic/back.png pic/bg1.png pic/book.png pic/car.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png pic/favicon.ico pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg
+        RESOURCES pic/air.png pic/back.png pic/bg1.png pic/book.png pic/car.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png  pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg
         QML_FILES RoundedIcon.qml
-        QML_FILES AppCardContainer.qml
         QML_FILES AppCard.qml
         QML_FILES AmapBottomComponent.qml
-        RESOURCES pic/air.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png pic/favicon.ico pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg pic/toCompany.png
+        RESOURCES pic/air.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png  pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/navigation.png pic/power.jpg pic/toCompany.png
         RESOURCES pic/Amap.png
         RESOURCES pic/QQMusic.png
         RESOURCES pic/QQMusicBG.png
         QML_FILES QQMusicBottomComponent.qml
-        RESOURCES pic/air.png pic/Amap.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png pic/favicon.ico pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/music_center.png pic/music_left.png pic/music_right.png pic/navigation.png pic/power.jpg pic/QQMusic.png pic/QQMusicBG.png pic/toCompany.png
-        RESOURCES pic/air.png pic/Amap.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png pic/favicon.ico pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/music_center.png pic/music_left.png pic/music_pause.png pic/music_play.png pic/music_right.png pic/navigation.png pic/power.jpg pic/QQMusic.png pic/QQMusicBG.png pic/toCompany.png
+        RESOURCES pic/air.png pic/Amap.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png  pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/music_center.png pic/music_left.png pic/music_right.png pic/navigation.png pic/power.jpg pic/QQMusic.png pic/QQMusicBG.png pic/toCompany.png
+        RESOURCES pic/air.png pic/Amap.png pic/back.png pic/backHome.png pic/bg1.png pic/bg2.png pic/bg3.png pic/book.png pic/car.png pic/chargeStation.png pic/clockwise.png pic/close.png pic/defog.png pic/fan.png  pic/geo.jpg pic/Home.png pic/Loong1.png pic/Loong128.png pic/Menu.png pic/music.png pic/music_center.png pic/music_left.png pic/music_pause.png pic/music_play.png pic/music_right.png pic/navigation.png pic/power.jpg pic/QQMusic.png pic/QQMusicBG.png pic/toCompany.png
         QML_FILES QQMusicCenterComponent.qml
+        RESOURCES pic/aiIcon.png
+        RESOURCES pic/sunny.png
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

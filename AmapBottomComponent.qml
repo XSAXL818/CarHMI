@@ -7,10 +7,7 @@ Rectangle {
     radius: 10
     color: "#99000000"
 
-    // width: 200
-    // height: 70
-
-    property real iconSize: 40
+    property real iconSize: 25
     property real tMargin: 10
     property int fontSize: 15
 
@@ -41,7 +38,7 @@ Rectangle {
             }
             Text{
                 anchors.top:backHome.bottom
-                anchors.topMargin: 10
+                anchors.topMargin: 5
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "回家"
                 font.pixelSize: root.fontSize
@@ -93,7 +90,7 @@ Rectangle {
             }
             Text{
                 anchors.top:toCompany.bottom
-                anchors.topMargin: 10
+                anchors.topMargin: 5
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "去公司"
                 font.pixelSize: root.fontSize
@@ -144,7 +141,7 @@ Rectangle {
             }
             Text{
                 anchors.top:chargeStation.bottom
-                anchors.topMargin: 10
+                anchors.topMargin: 5
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: "充电站"
                 font.pixelSize: root.fontSize
