@@ -1,5 +1,5 @@
 import QtQuick
-
+import QtQuick.Controls
 
 Rectangle {
     id: root
@@ -14,20 +14,30 @@ Rectangle {
     property real tMargin: 10
     property int fontSize: 15
 
+    signal clickBackHome
+    signal clickToCompany
+    signal clickChargeStation
+
     Row{
         anchors.fill: parent
         Rectangle{
+            id: rectBackHome
             width: parent.width/3
             height: parent.height
             color: "transparent"
-            Image{
+
+            Button{
                 id: backHome
                 width: root.iconSize
                 height: root.iconSize
                 anchors.top: parent.top
                 anchors.topMargin: root.tMargin
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "pic/backHome.png"
+                background: Item{}
+                Image {
+                    anchors.fill: parent
+                    source: "pic/backHome.png"
+                }
             }
             Text{
                 anchors.top:backHome.bottom
@@ -37,9 +47,31 @@ Rectangle {
                 font.pixelSize: root.fontSize
                 color: "white"
             }
+
+            // 设置缩放动画行为
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.InOutQuad  // 缓动曲线
+                }
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    root.clickBackHome()
+                }
+                onPressed: {
+                    rectBackHome.scale=0.7
+
+                }
+                onReleased: {
+                    rectBackHome.scale=1.0
+                }
+            }
         }
 
         Rectangle{
+            id: rectToCompany
             width: parent.width/3
             height: parent.height
             color: "transparent"
@@ -51,6 +83,13 @@ Rectangle {
                 anchors.topMargin: root.tMargin
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: "pic/toCompany.png"
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        root.clickToCompany()
+                    }
+                }
             }
             Text{
                 anchors.top:toCompany.bottom
@@ -60,9 +99,30 @@ Rectangle {
                 font.pixelSize: root.fontSize
                 color: "white"
             }
+            // 设置缩放动画行为
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.InOutQuad  // 缓动曲线
+                }
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    root.clickToCompany()
+                }
+                onPressed: {
+                    rectToCompany.scale=0.7
+
+                }
+                onReleased: {
+                    rectToCompany.scale=1.0
+                }
+            }
         }
 
         Rectangle{
+            id: rectChargeStation
             width: parent.width/3
             height: parent.height
             color: "transparent"
@@ -74,6 +134,13 @@ Rectangle {
                 anchors.topMargin: root.tMargin
                 anchors.horizontalCenter: parent.horizontalCenter
                 source: "pic/chargeStation.png"
+
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        root.clickChargeStation()
+                    }
+                }
             }
             Text{
                 anchors.top:chargeStation.bottom
@@ -82,6 +149,26 @@ Rectangle {
                 text: "充电站"
                 font.pixelSize: root.fontSize
                 color: "white"
+            }
+            // 设置缩放动画行为
+            Behavior on scale {
+                NumberAnimation {
+                    duration: 100
+                    easing.type: Easing.InOutQuad  // 缓动曲线
+                }
+            }
+            MouseArea{
+                anchors.fill: parent
+                onClicked: {
+                    root.clickChargeStation()
+                }
+                onPressed: {
+                    rectChargeStation.scale=0.7
+
+                }
+                onReleased: {
+                    rectChargeStation.scale=1.0
+                }
             }
         }
 

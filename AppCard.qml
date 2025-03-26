@@ -11,6 +11,7 @@ Rectangle {
     property string bgSource: ""
     property string iconSource: ""
     property string app: "app"
+    property color appColor: "white"
     property Component centerComponent: null
     property Component bottomComponent: null
 
@@ -31,71 +32,84 @@ Rectangle {
         fillMode: Image.PreserveAspectCrop
     }
 
-    Column{
-        spacing: 5
+    Rectangle{
         width: root.width
-        height: root.height
-        property real myHeight: height/10
-        Row{
-            id: header
-            width: parent.width
-            height: parent.myHeight*1.5
+        height: root.height-10
+        anchors.topMargin: 10
+        anchors.top: parent.top
+        color: "transparent"
+        Column{
+            spacing: 5
+            anchors.fill: parent
+            property real myHeight: height/10
+            Row{
+                id: header
+                width: parent.width
+                height: parent.myHeight*1.5
+                spacing: 10
+                Rectangle{
+                    width: parent.width
+                    height: parent.height
+                    color:"transparent"
+
+                    RoundedIcon{
+                        id: icon
+                        anchors.left: parent.left
+                        anchors.leftMargin: 20
+                        size: parent.height-10
+                        iconSource: root.iconSource
+                        anchors.verticalCenter: parent.verticalCenter
+                    }
+
+                    Text{
+                        id: appName
+                        anchors.left: icon.right
+                        anchors.leftMargin: 10
+                        width: parent.width-icon.width
+                        height: parent.height
+
+                        verticalAlignment: Text.AlignVCenter
+
+                        font.pixelSize: 20
+                        color: root.appColor
+                        text: root.app
+                    }
+                }
+            }
+
             Rectangle{
                 width: parent.width
-                height: parent.height
-                color:"transparent"
+                height: parent.myHeight*5
+                anchors.top: header.bottom
+                anchors.left: parent.left
+                color: "transparent"
+                // color: "orange"
 
-                RoundedIcon{
-                    id: icon
-                    anchors.left: parent.left
-                    anchors.leftMargin: 20
-                    size: parent.height-10
-                    iconSource: root.iconSource
-                    anchors.verticalCenter: parent.verticalCenter
+                Loader{
+                    id: center
+                    anchors.fill: parent
+                    sourceComponent: root.centerComponent
                 }
+            }
 
-                Text{
-                    id: appName
-                    anchors.left: icon.right
-                    anchors.leftMargin: 10
-                    width: parent.width-icon.width
-                    height: parent.height
+            Rectangle{
+                width: parent.width-30
+                anchors.left: parent.left
+                anchors.leftMargin: 15
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 10
+                height: parent.myHeight*2.5
+                color: "transparent"
+                // color: "orange"
 
-                    verticalAlignment: Text.AlignVCenter
-
-                    font.pixelSize: 20
-                    color: "white"
-                    text: root.app
+                Loader{
+                    id: bottom
+                    anchors.fill: parent
+                    sourceComponent: root.bottomComponent
                 }
             }
         }
-
-        Loader{
-            id: center
-            width: parent.width
-            height: parent.myHeight*5
-            sourceComponent: root.centerComponent
-        }
-
-
-        Rectangle{
-            width: parent.width-30
-            anchors.left: parent.left
-            anchors.leftMargin: 15
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 10
-            height: parent.myHeight*3.5
-            color: "transparent"
-            // color: "orange"
-
-            Loader{
-                id: bottom
-                anchors.fill: parent
-                sourceComponent: root.bottomComponent
-            }
-        }
-
-
-
     }
+
+
 }
