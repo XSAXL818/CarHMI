@@ -9,7 +9,7 @@ Rectangle {
     color: "transparent"
 
     property real perWidth: root.width/10
-    property real topHeight: 150
+    property real topHeight: 110
 
     // 天气属性
     property string climateSouce: "pic/sunny.png"
@@ -28,7 +28,7 @@ Rectangle {
         // color: "blue"
         color: "transparent"
 
-        property real mTopMargin: 40
+        property real mTopMargin: 20
 
         Rectangle{
             id: aiChat
@@ -39,16 +39,14 @@ Rectangle {
             radius: 20
 
             gradient: Gradient{
-                orientation: Gradient.Horizontal
                 GradientStop{
                     position: 0.0
-                    color: "gray"
+                    color: "#3f4658"
                 }
                 GradientStop{
                     position: 0.5
-                    color: "black"
+                    color: "#1a1f2a"
                 }
-
             }
 
             Image {
@@ -57,6 +55,8 @@ Rectangle {
                 anchors.verticalCenter: parent.verticalCenter
                 height: parent.height-top.mTopMargin*2
                 width: height
+                anchors.left: parent.left
+                anchors.leftMargin: 20
             }
 
             Text{
@@ -91,22 +91,22 @@ Rectangle {
             anchors.left: aiChat.right
             // color: "red"
 
+            gradient: Gradient{
+                orientation: Gradient.Horizontal
+                GradientStop{
+                    position: 0.0
+                    color: "#3f4658"
+                }
+                GradientStop{
+                    position: 0.5
+                    color: "#1a1f2a"
+                }
+            }
             topLeftRadius: 50
             radius: 20
 
             property real perWidth: width/10
 
-            gradient: Gradient{
-                orientation: Gradient.Horizontal
-                GradientStop{
-                    position: 0.0
-                    color: "gray"
-                }
-                GradientStop{
-                    position: 0.5
-                    color: "black"
-                }
-            }
 
             Rectangle{
                 id: w1
@@ -119,6 +119,8 @@ Rectangle {
                     source: root.climateSouce
                     anchors.verticalCenter: parent.verticalCenter
                     height: parent.height-top.mTopMargin*2
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
                     width: height
                 }
 
@@ -240,12 +242,12 @@ Rectangle {
         anchors.top: top.bottom
         anchors.topMargin: 20
         anchors.left: parent.left
-        color: "green"
+        color: "transparent"
 
 
         AppCard{
             id: amap
-            width: 250
+            width: 270
             anchors.verticalCenter: parent.verticalCenter
             bgSource: "pic/geo.jpg"
             iconSource: "pic/Amap.png"
@@ -270,7 +272,7 @@ Rectangle {
         }
         AppCard{
             id: qqMusic
-            width: 250
+            width: 270
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: amap.right
             anchors.leftMargin: 10
@@ -291,9 +293,104 @@ Rectangle {
                 }
 
                 onClickCenter: (isPlay) => {
-                    console.log("当前播放状态:"+isPlay)
+                                   console.log("当前播放状态:"+isPlay)
+                               }
+            }
+        }
+
+        Rectangle{
+            anchors.left: qqMusic.right
+            anchors.right: parent.right
+            anchors.top: qqMusic.top
+            anchors.bottom: parent.bottom
+            color: "transparent"
+
+            // 汽车信息
+            Rectangle{
+                id: carConditionRect
+                width: parent.width-20
+                height: parent.height/2-40
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.leftMargin: 20
+                color: "transparent"
+
+                CarConditionCard{
+                    anchors.fill: parent
                 }
             }
+
+            Rectangle{
+                id: appRect
+                width: parent.width
+                height: amap.height-carConditionRect.height
+                anchors.top: carConditionRect.bottom
+                anchors.left: parent.left
+                // anchors.bottom: qqMusic.bottom
+                color: "transparent"
+
+                Rectangle{
+                    id: ximalaya
+                    anchors.top: parent.top
+                    anchors.topMargin: 40
+                    anchors.left: parent.left
+                    anchors.leftMargin: 20
+                    width: (parent.width/10)*6
+                    height: parent.height-40
+                    color: "white"
+
+                    Ximalaya{
+                        anchors.fill: parent
+                    }
+                }
+
+                Rectangle{
+                    id: appSet
+                    anchors.top: parent.top
+                    anchors.topMargin: 40
+                    anchors.left: ximalaya.right
+                    anchors.leftMargin: 20
+                    anchors.right: parent.right
+                    height: ximalaya.height
+                    // color: "orange"
+
+                    property var iconSources: ["pic/nav.png","pic/brower.png","pic/phone.png","pic/chatAss.png"]
+
+                    color: "#222834"
+                    // 启用图层渲染
+                    layer.enabled: true
+                    layer.effect: DropShadow {
+                        transparentBorder: true  // 透明边缘处理
+                        color: "#80ffffff"       // 阴影颜色（带透明度）
+                        radius: 20               // 模糊半径
+                        samples: 41              // 采样数（建议值为 radius*2+1）
+                        horizontalOffset: -4      // 水平偏移
+                        verticalOffset: -4        // 垂直偏移
+                    }
+
+                    // 网格布局
+                    Grid {
+                        anchors.centerIn: parent
+                        rows: 2        // 行数
+                        columns: 2     // 列数
+                        spacing: 20    // 方格间距
+
+                        // 批量生成 4 个方格
+                        Repeater {
+                            model: 4   // 生成 4 个子项
+                            delegate: RoundedIcon {
+                                size: 50
+                                iconSource: appSet.iconSources[index]
+
+                            }
+                        }
+                    }
+
+
+                }
+
+            }
+
 
         }
 

@@ -15,11 +15,11 @@ Window {
     Rectangle {
         id: root
         anchors.fill: parent
-        color: "red"
+        // color: "#2b2e3b"
         // 左侧按钮的高
         property int leftHeight: height/8
         // 左侧按钮的图标长宽
-        property int iconSize: 40
+        property int iconSize: 30
         // 状态信息
         property bool onBluetooth: false // 蓝牙
         property bool onWIFI: false // 无线网络
@@ -38,7 +38,16 @@ Window {
         property real onCCS: 70 // 中控亮度
         property real onDashboard: 70 // 仪表亮度
 
-        // 顶部状态栏
+        gradient: Gradient{
+            GradientStop{
+                position: 0.0
+                color: "#3f4658"
+            }
+            GradientStop{
+                position: 0.5
+                color: "#1a1f2a"
+            }
+        }
 
         
         // 左侧按钮
@@ -134,7 +143,7 @@ Window {
             anchors.right: root.right
             anchors.top: root.top
             height: root.height
-            color: "orange"
+            color: "#992b2e3b"
 
             // 顶部状态栏
             Rectangle{
@@ -288,6 +297,7 @@ Window {
                 anchors.bottom: right.bottom
                 anchors.left: right.left
                 anchors.right: right.right
+                anchors.rightMargin: 30
                 anchors.leftMargin: 50
                 anchors.bottomMargin: 20
                 height: 120

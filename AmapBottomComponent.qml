@@ -8,7 +8,7 @@ Rectangle {
     color: "#99000000"
 
     property real iconSize: 25
-    property real tMargin: 10
+    property real tMargin: 20
     property int fontSize: 15
 
     signal clickBackHome

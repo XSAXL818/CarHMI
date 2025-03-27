@@ -6,7 +6,7 @@ import Qt5Compat.GraphicalEffects
 Rectangle {
     id: root
     width: 220
-    height: width*1.3
+    height: width*1.5
 
     property string bgSource: ""
     property string iconSource: ""

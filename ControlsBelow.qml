@@ -1,11 +1,10 @@
 import QtQuick
 import QtQuick.Shapes
 import QtQuick.Controls
+import Qt5Compat.GraphicalEffects
 
 Rectangle{
     id: root
-    // width: 700
-    // height: 130
     color: "transparent"
 
     property int lrmargin: 70
@@ -21,11 +20,14 @@ Rectangle{
     signal musicBtnClick
     signal bookBtnClick
 
+
     Shape{
         anchors.fill: parent
         ShapePath{
-            strokeColor: "#232a3c"
+            strokeColor: "darkslategray"
             fillColor: "#232a3c"
+            // fillColor: "dimgray"
+
             strokeWidth: 1
 
             startX: root.lrmargin
@@ -61,20 +63,25 @@ Rectangle{
             height: root.height
             radius: 10
 
+            layer.enabled: true
+            layer.effect: DropShadow {
+                transparentBorder: true  // 透明边缘处理
+                color: "#80ffffff"       // 阴影颜色（带透明度）
+                radius: 10
+                samples: 21              // 采样数（建议值为 radius*2+1）
+                // horizontalOffset: 4      // 水平偏移
+                verticalOffset: -4        // 垂直偏移
+            }
+
             gradient: Gradient{
                 GradientStop{
                     position: 0.0
-                    color: "#6c7eac"
+                    color: "#2a354a"
                 }
                 GradientStop{
-                    position: 0.3
-                    color: "#374362"
+                    position: 0.5
+                    color: "#232a3c"
                 }
-                GradientStop{
-                    position: 0.7
-                    color: "#2e3851"
-                }
-
             }
         }
 
