@@ -337,7 +337,7 @@ Rectangle {
                     anchors.leftMargin: 20
                     width: (parent.width/10)*6
                     height: parent.height-40
-                    color: "white"
+                    color: "transparent"
 
                     Ximalaya{
                         anchors.fill: parent
@@ -352,6 +352,7 @@ Rectangle {
                     anchors.leftMargin: 20
                     anchors.right: parent.right
                     height: ximalaya.height
+                    radius: 20
                     // color: "orange"
 
                     property var iconSources: ["pic/nav.png","pic/brower.png","pic/phone.png","pic/chatAss.png"]

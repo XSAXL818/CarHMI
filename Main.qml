@@ -9,7 +9,7 @@ Window {
     // height: 1024
     height: (width / 16) * 10
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Qt中控屏项目")
     flags: Qt.Window | Qt.CustomizeWindowHint | Qt.WindowTitleHint
 
     Rectangle {

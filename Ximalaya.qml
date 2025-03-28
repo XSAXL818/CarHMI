@@ -3,7 +3,7 @@ import Qt5Compat.GraphicalEffects
 
 Rectangle {
     anchors.fill: parent
-
+    radius: 20
     color: "#222834"
     // 启用图层渲染
     layer.enabled: true
@@ -27,6 +27,8 @@ Rectangle {
             id: l1
             width: parent.width
             height: parent.height/4
+            anchors.top: parent.top
+            anchors.topMargin: 10
             color: "transparent"
             RoundedIcon{
                 id: icon
