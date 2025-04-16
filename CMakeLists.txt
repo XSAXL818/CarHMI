@@ -56,6 +56,12 @@ qt_add_qml_module(appCarHMI
         QML_FILES
         QML_FILES PageAirTopComponent.qml
         RESOURCES pic/bg_air.png
+        RESOURCES pic/notification.png
+        QML_FILES MainPage.qml
+        QML_FILES MainPageLeftPart.qml
+        QML_FILES MainPageRightPart.qml
+        QML_FILES TopDrawerLeftCont.qml
+        QML_FILES TopDrawerRightCont.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
