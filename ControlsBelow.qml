@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Shapes
 import QtQuick.Controls
 import Qt5Compat.GraphicalEffects
+import QtQuick.Layouts
 
 Rectangle{
     id: root
@@ -20,75 +21,96 @@ Rectangle{
     signal musicBtnClick
     signal bookBtnClick
 
-
-    Shape{
+    Canvas {
         anchors.fill: parent
-        ShapePath{
-            strokeColor: "darkslategray"
-            fillColor: "#232a3c"
-            // fillColor: "dimgray"
 
-            strokeWidth: 1
+        onPaint: {
+            var ctx = getContext("2d")
+            ctx.reset()
 
-            startX: root.lrmargin
-            startY: 0
+            // 清除画布
+            ctx.clearRect(0, 0, width, height)
 
-            PathQuad{
-                x: 0
-                y: root.height
-            }
+            // 设置样式
+            // 1. 创建线性渐变对象
+            // 参数：(x0, y0)为起点坐标，(x1, y1)为终点坐标
+            const gradient = ctx.createLinearGradient(0, 0, width, height)
 
-            PathLine{
-                x: root.width
-                y: root.height
-            }
+            // 2. 添加色标（颜色节点）
+            gradient.addColorStop(0, "#2a354a")      // 起点颜色
+            gradient.addColorStop(0.5, "#232a3c")   // 中间颜色
+            gradient.addColorStop(1, "#2a354a")       // 终点颜色
 
-            PathQuad{
-                x: root.width-root.lrmargin
-                y: 0
-                controlX: root.width
-                controlY: 0
-            }
+            // 3. 设置填充样式为渐变
+            ctx.fillStyle = gradient
+            // ctx.fillStyle = "#232a3c"
+            ctx.strokeStyle = "darkslategray"
+            ctx.lineWidth = 2
 
-            PathLine{
-                x: root.lrmargin
-                y: 0
-            }
+            // 定义梯形参数
+            const topWidth = width-80
+            const bottomWidth = width
+            const radius = 10
+            const heightOffset = height - 2 * radius
 
+            // 开始绘制路径
+            ctx.beginPath()
+
+            // 左下角（起点，避开圆弧）
+            ctx.moveTo(radius, height - radius)
+
+            // 底部边（从左到右）
+            ctx.lineTo(bottomWidth - radius, height - radius)
+
+            // 右下角圆弧
+            ctx.arcTo(
+                        bottomWidth, height - radius,
+                        bottomWidth, height - 2 * radius,
+                        radius
+                        )
+
+            // 右侧边（下到上）
+            ctx.lineTo((width + topWidth)/2, radius)
+
+            // 右上角圆弧
+            ctx.arcTo(
+                        (width + topWidth)/2, 0,
+                        (width + topWidth)/2 - radius, 0,
+                        radius
+                        )
+
+            // 顶部边（从右到左）
+            ctx.lineTo((width - topWidth)/2 + radius, 0)
+
+            // 左上角圆弧
+            ctx.arcTo(
+                        (width - topWidth)/2, 0,
+                        (width - topWidth)/2, radius,
+                        radius
+                        )
+
+            // 左侧边（上到下）
+            ctx.lineTo(radius, height - 2 * radius)
+
+            // 左下角圆弧（闭合路径）
+            // ctx.arcTo(
+            //             0, height - radius,
+            //             radius, height - radius,
+            //             radius
+            //             )
+
+            ctx.closePath()
+
+            // 填充和描边
+            ctx.fill()
+            ctx.stroke()
         }
-
-        Rectangle{
-            anchors.centerIn: parent
-            width: root.perWidth*5
-            height: root.height
-            radius: 10
-
-            layer.enabled: true
-            layer.effect: DropShadow {
-                transparentBorder: true  // 透明边缘处理
-                color: "#80ffffff"       // 阴影颜色（带透明度）
-                radius: 10
-                samples: 21              // 采样数（建议值为 radius*2+1）
-                // horizontalOffset: 4      // 水平偏移
-                verticalOffset: -4        // 垂直偏移
-            }
-
-            gradient: Gradient{
-                GradientStop{
-                    position: 0.0
-                    color: "#2a354a"
-                }
-                GradientStop{
-                    position: 0.5
-                    color: "#232a3c"
-                }
-            }
-        }
-
     }
 
+    // 按钮
     Row{
         width: root.perWidth*9
+        height: root.height
         anchors.horizontalCenter: parent.horizontalCenter
 
         IconButton{
@@ -102,6 +124,7 @@ Rectangle{
                 root.carBtnClick()
             }
         }
+        // 导航按钮
         IconButton{
             id: navigationBtn
             width: root.perWidth
@@ -126,14 +149,16 @@ Rectangle{
             }
         }
 
-
         // 进阶版
         TemperatureControl {
             id: leftTempControl
             width: root.perWidth
-            height: root.height
+            height: root.height-20
+            temperatureValue: mainPage.airTemp1
             onTemperatureChanged: (temp) =>{
                 root.leftTemperatureChanged(temp)
+                console.log(temp)
+                mainPage.airTemp1 = temp
             }
         }
         IconButton{
@@ -150,9 +175,11 @@ Rectangle{
         TemperatureControl{
             id: rightTempControl
             width: root.perWidth
-            height: root.height
+            height: root.height-20
+            temperatureValue: mainPage.airTemp2
             onTemperatureChanged: (temp) =>{
                 root.rightTemperatureChanged(temp)
+                mainPage.airTemp2 = temp
             }
         }
 

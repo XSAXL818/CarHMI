@@ -25,13 +25,14 @@ Rectangle {
             topLeftRadius: 40
         }
     }
+    // 背景图片
     Image {
         id: bg
         anchors.fill: parent
         source: root.bgSource
         fillMode: Image.PreserveAspectCrop
     }
-
+    // 播放控制
     Rectangle{
         id: cont
         width: root.width
@@ -44,6 +45,7 @@ Rectangle {
         Column{
             spacing: 5
             anchors.fill: parent
+            // 应用标题
             Rectangle{
                 id: header
                 width: parent.width
@@ -71,9 +73,7 @@ Rectangle {
                     text: root.app
                 }
             }
-
-
-
+            // 应用中间
             Rectangle{
                 id: rectCenter
                 width: cont.width
@@ -88,12 +88,11 @@ Rectangle {
                     sourceComponent: root.centerComponent
                 }
             }
-
+            // 应用下方
             Rectangle{
                 width: cont.width
                 height: cont.myHeight*2.3
                 color: "transparent"
-                // color: "orange"
 
                 Loader{
                     id: bottom

@@ -15,20 +15,8 @@ Rectangle {
     property string electrical: "3"
     property int electDistance: 245
 
-
     radius: 10
-    // gradient: Gradient{
-    //     orientation: Gradient.Horizontal
-    //     GradientStop{
-    //         position: 0.0
-    //         color: "#2b2e3b"
-    //     }
-    //     GradientStop{
-    //         position: 0.5
-    //         color: "#992b2e3b"
-    //     }
-    // }
-    // 启用图层渲染
+
     layer.enabled: true
     layer.effect: DropShadow {
         transparentBorder: true  // 透明边缘处理
@@ -39,6 +27,7 @@ Rectangle {
         verticalOffset: -4        // 垂直偏移
     }
 
+    // 数据表
     Rectangle{
         id: left
         width: root.perWidth*4
@@ -122,7 +111,6 @@ Rectangle {
                 height: 35
                 anchors.verticalCenter: parent.verticalCenter
                 source: "pic/elect" + root.electrical + ".png"
-                // source: "pic/power.jpg"
             }
 
             Text{
@@ -138,14 +126,13 @@ Rectangle {
     }
 
 
+    // 汽车模型
     Rectangle{
         id: right
         width: root.perWidth*6
         height: root.height
         anchors.left: left.right
         color: "transparent"
-        // color: "blue"
-
 
         Image {
             anchors.left: parent.left
@@ -154,6 +141,14 @@ Rectangle {
             anchors.bottom: parent.bottom
             source: "pic/su7.png"
             fillMode: Image.PreserveAspectCrop
+        }
+
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                // console.log("汽车背电极")
+                mainPage.pageSource = "CarSettingPage.qml"
+            }
         }
 
     }

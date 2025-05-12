@@ -12,8 +12,9 @@ Rectangle {
     signal clickLeft
     signal clickCenter(bool isPlay)
     signal clickRight
+    property bool isPlay: mainPage.isPlay
 
-
+    // 上一首
     IconButton{
         id: left
         anchors.left: parent.left
@@ -32,11 +33,10 @@ Rectangle {
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                root.clickLeft()
+                mainPage.lastSong()
             }
             onPressed: {
                 left.scale=0.7
-
             }
             onReleased: {
                 left.scale=1.0
@@ -44,14 +44,13 @@ Rectangle {
         }
     }
 
+    // 播放/暂停
     IconButton{
         id: center
         anchors.centerIn: parent
         anchors.verticalCenter: parent.verticalCenter
-        size: 40
-        property bool isPlay: false
-
-        source: isPlay ?  "pic/music_pause.png" : "pic/music_play.png"
+        size: 45
+        source: root.isPlay ? "pic/music_play.png" : "pic/music_pause.png"
 
         // 设置缩放动画行为
         Behavior on scale {
@@ -63,8 +62,9 @@ Rectangle {
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                root.clickCenter(center.isPlay)
-                center.isPlay = !center.isPlay
+                root.isPlay = !root.isPlay
+                mainPage.isPlay = !mainPage.isPlay
+
             }
             onPressed: {
                 center.scale=0.7
@@ -76,6 +76,7 @@ Rectangle {
         }
     }
 
+    // 下一首
     IconButton{
         id: right
         anchors.right: parent.right
@@ -95,6 +96,7 @@ Rectangle {
             anchors.fill: parent
             onClicked: {
                 root.clickLeft()
+                mainPage.nextSong()
             }
             onPressed: {
                 right.scale=0.7

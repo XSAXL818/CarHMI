@@ -16,13 +16,13 @@ Rectangle {
         maskSource: Rectangle {
             width: root.width
             height: root.height
-            radius: 5
+            radius: root.iconRadius
         }
     }
     Image {
         id: icon
         anchors.fill: parent
-        source: ""
+        source: "pic/power.png"
         fillMode: Image.PreserveAspectCrop
     }
 

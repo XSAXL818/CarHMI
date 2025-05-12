@@ -5,7 +5,6 @@ import Qt5Compat.GraphicalEffects
 Rectangle {
     id: root
     anchors.fill: parent
-    // color: "lightgray"
     color: "transparent"
 
     property real perWidth: root.width/10
@@ -14,13 +13,15 @@ Rectangle {
     // 天气属性
     property string climateSouce: "pic/sunny.png"
     property string climateLocation: "兰州市 安宁区"
-    property string climateDetail: "晴转多云 32°"
-    property string airQuality: "优"
+    property string climateDetail: mainPage.wp + " " + mainPage.tem // "晴转多云 32°"
+    property string airQuality: mainPage.aqiDesc //"优"
     property color airColor: "green"
-    property string timeClock: "20:44"
-    property string timeDate: "9月5日 星期四"
+    property string timeClock: mainPage.hours + ":" + mainPage.minutes
+    property string timeDate: mainPage.month + "月" + mainPage.day + "日 " + mainPage.dayIndex
 
+    signal clickBackHome
 
+    // 顶部小组件
     Rectangle{
         id: top
         width: root.width
@@ -30,6 +31,7 @@ Rectangle {
 
         property real mTopMargin: 20
 
+        // ai助手
         Rectangle{
             id: aiChat
             width: root.perWidth*3.2
@@ -83,7 +85,7 @@ Rectangle {
                 font.pixelSize: 18
             }
         }
-
+        // 天气组件
         Rectangle{
             id: weatherRect
             width: root.perWidth*5
@@ -202,7 +204,7 @@ Rectangle {
             }
 
         }
-
+        // 时间组件
         Rectangle{
             id: time
             width: root.perWidth*2
@@ -234,7 +236,7 @@ Rectangle {
         }
 
     }
-
+    // 卡片
     Rectangle{
         id: bottom
         width: root.width
@@ -244,12 +246,12 @@ Rectangle {
         anchors.left: parent.left
         color: "transparent"
 
-
+        // 地图
         AppCard{
             id: amap
-            width: 270
+            width: 300
             anchors.verticalCenter: parent.verticalCenter
-            bgSource: "pic/geo.jpg"
+            bgSource: "pic/geo.png"
             iconSource: "pic/Amap.png"
             app: "道德地图"
             appColor: "black"
@@ -258,6 +260,8 @@ Rectangle {
                 iconSize: 25
 
                 onClickBackHome: {
+                    mainPageRightPart.clickNavBackHome()
+
                     console.log("回家")
                 }
 
@@ -270,9 +274,11 @@ Rectangle {
                 }
             }
         }
+
+        // 音乐
         AppCard{
             id: qqMusic
-            width: 270
+            width: 300
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: amap.right
             anchors.leftMargin: 10
@@ -293,14 +299,17 @@ Rectangle {
                 }
 
                 onClickCenter: (isPlay) => {
-                                   console.log("当前播放状态:"+isPlay)
-                               }
+                    console.log("当前播放状态:"+isPlay)
+                    mainPage.isPlay = isPlay
+                }
             }
         }
 
+        // 汽车模型
         Rectangle{
             anchors.left: qqMusic.right
             anchors.right: parent.right
+            anchors.rightMargin: 70
             anchors.top: qqMusic.top
             anchors.bottom: parent.bottom
             color: "transparent"
@@ -317,9 +326,21 @@ Rectangle {
 
                 CarConditionCard{
                     anchors.fill: parent
-                }
-            }
+                    electrical: mainPage.electrical === 100 ? 5 :
+                                mainPage.electrical >= 80 ? 4 :
+                                mainPage.electrical >= 60 ? 3 :
+                                mainPage.electrical >= 40 ? 2 :
+                                mainPage.electrical >= 20 ? 1 :
+                                0
 
+                    distance: mainPage.mileage
+                    days: mainPage.companyDay
+                    electDistance: mainPage.electDistance
+
+                }
+
+            }
+            // 应用卡片
             Rectangle{
                 id: appRect
                 width: parent.width

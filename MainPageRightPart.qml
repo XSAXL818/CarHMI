@@ -10,26 +10,32 @@ Rectangle {
     height: parent.height
     color: "#602b2e3b"
 
+    property bool isShowBackground: false
+    property string backgroundImgSource: ""
+
+
+    Rectangle{
+        id: background
+        anchors.fill: parent
+        visible: root.isShowBackground
+
+        Image {
+            anchors.fill: parent
+            source: root.backgroundImgSource
+            fillMode: Image.PreserveAspectCrop
+        }
+    }
+
+    // 应用高斯模糊到捕获的背景
+    layer.enabled: leftDrawer.opened || rightDrawer.opened ? true : false
+    layer.effect: GaussianBlur {
+        radius: 16
+        samples: 32
+        transparentBorder: true  // 避免边缘锐化
+    }
+
     // 左边控制栏的宽度
     property double leftWidth
-
-    // 状态信息
-    property bool onBluetooth: false // 蓝牙
-    property bool onWIFI: false // 无线网络
-    property bool onTheme: false // 主题色,默认浅色
-    property bool onLocationShare: false // 位置共享
-    property bool onClockwise: false // 自动旋转
-    property bool onQianLiYan: false // 千里眼
-    property bool onHUD: false // 抬头显示HUD
-    property bool onDS: false // 动态悬架
-    property bool onWinHeat: false // 通风加热
-    property bool onElecD: false // 电除霜
-    property bool onSkylight: false // 天窗
-    property bool onESP: false // ESP
-    property real onMedia: 50 // 媒体音量
-    property real onNavigation: 50 // 导航音量
-    property real onCCS: 70 // 中控亮度
-    property real onDashboard: 70 // 仪表亮度
 
     // 顶部状态栏
     Rectangle{
@@ -37,7 +43,6 @@ Rectangle {
         anchors.top: root.top
         width: root.width
         height: 40
-        // color: "#992b2e3b"
         color: "transparent"
 
         ListView{
@@ -88,8 +93,10 @@ Rectangle {
             modal: false // 关键：允许与非抽屉区域交互
             background: Item {} // 清空默认背景
 
+
             // 右侧内容
             TopDrawerRightCont{
+                id: rightCont
                 anchors.fill: parent
             }
         }
@@ -120,7 +127,6 @@ Rectangle {
     Loader{
         id: rCenter
         anchors.top: rTop.bottom
-        // anchors.topMargin: 10
         height: parent.height-rTop.height-rBottom.height-60
         width: root.width-70
         anchors.left: parent.left
@@ -128,8 +134,11 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: 20
 
-        source: "Home.qml"
+        source: mainPage.pageSource
+
     }
+
+
     // 底部控件
     Rectangle{
         id: rBottom
@@ -139,8 +148,10 @@ Rectangle {
         anchors.rightMargin: 30
         anchors.leftMargin: 50
         anchors.bottomMargin: 20
-        height: 120
+        height: 140
         color: "transparent"
+
+
 
         ControlsBelow{
             id: controlsBelow
@@ -160,6 +171,9 @@ Rectangle {
 
             onNavigationBtnClick: {
                 console.log("bottom-navigation")
+                // root.enterFullScreen(true)
+                root.enterPageMusic(true)
+                mainPage.pageSource = "PageNav.qml"
             }
 
             onFanBtnClick: {
@@ -167,7 +181,7 @@ Rectangle {
             }
 
             onAirBtnClick: {
-                rCenter.source = "PageAirConditioner.qml"
+                mainPage.pageSource = "PageAirConditioner.qml"
             }
 
             onDefogBtnClick: {
@@ -176,6 +190,9 @@ Rectangle {
 
             onMusicBtnClick: {
                 console.log("bottom-music")
+
+                root.enterPageMusic(true)
+                mainPage.pageSource = "PageMusic.qml"
             }
 
             onBookBtnClick: {
@@ -183,5 +200,66 @@ Rectangle {
             }
 
         }
+    }
+
+    // 检查顶部状态栏是否开启
+    function isDrawerOpened(){
+        if( leftDrawer.opened || rightDrawer.opened ){
+            return true
+        }
+        return false
+    }
+
+    // 关闭顶部状态栏
+    function closeDrawer(){
+        leftDrawer.close()
+        rightDrawer.close()
+    }
+
+    function enterFullScreen(enter){
+        if( enter ){
+            rBottom.visible = false
+            rCenter.height += rBottom.height - 50
+        } else {
+            rBottom.visible = true
+            rCenter.height -= rBottom.height - 50
+        }
+    }
+
+    function enterPageMusic(enter){
+        if( enter ){
+            rBottom.visible = false
+            // rCenter.height += 180
+            // rCenter.anchors.fill = rCenter.parent
+            rCenter.anchors.leftMargin = 0
+            rCenter.anchors.rightMargin = 0
+            rCenter.anchors.bottom = rCenter.parent.bottom
+            // rCenter.width += 100
+            root.isShowBackground = true
+            root.backgroundImgSource = "pic/musicBackground.png"
+        } else {
+            rBottom.visible = true
+            // rCenter.height = parent.height-rTop.height-rBottom.height-60
+            rCenter.width = root.width-70
+            rCenter.anchors.leftMargin = 50
+            rCenter.anchors.rightMargin = 20
+            rCenter.anchors.bottom = rBottom.top
+            // rCenter.anchors.bottomMargin = 200
+
+            root.isShowBackground = false
+        }
+    }
+
+    property bool isFirst: true
+
+
+    function clickNavBackHome(){
+        mainPage.defaultMapUrl = mainPage.navToUrl
+        controlsBelow.navigationBtnClick()
+        mainPage.defaultMapUrl = "https://amap.com/"
+    }
+
+    Component.onCompleted: {
+        // enterFullScreen(false)
     }
 }

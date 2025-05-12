@@ -9,48 +9,44 @@ Rectangle {
     property double btnHeight
     property int iconSize
 
+    signal profileClicked
+    signal backBtnClicked
+    signal homeBtnClicked
+    signal menuBtnClicked
+    signal clockWiseBtnClicked
+    signal closeBtnClicked
 
     Column{
         anchors.fill: parent
         anchors.topMargin: 20
         spacing: 30
 
+        // 头像栏
         ProfilePicture{
             id: profile
             size: root.width-30
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "pic/power.jpg"
-            onClick: {
-                console.log("头像被点击")
-            }
-
+            source: "pic/power.png"
+            onClick: { profileClicked() }
         }
 
+        // 返回按钮
         IconButton{
             id: backBtn
             width: parent.width
             height: root.btnHeight
             source: "pic/back.png"
             size: root.iconSize
-            onClicked: {
-                rCenter.source = "Page1.qml"
-
-                if( leftDrawer.opened | rightDrawer.opened ){
-                    leftDrawer.close()
-                    rightDrawer.close()
-                }
-            }
+            onClicked: { backBtnClicked() }
         }
+        // home按钮
         IconButton{
             id: homeBtn
             width: parent.width
             height: root.btnHeight
             size: root.iconSize
             source: "pic/Home.png"
-
-            onClicked: {
-                rCenter.source = "Home.qml"
-            }
+            onClicked: { homeBtnClicked() }
         }
 
         IconButton{
@@ -59,20 +55,15 @@ Rectangle {
             height: root.btnHeight
             source: "pic/Menu.png"
             size: root.iconSize
-            onClicked: {
-                console.log("菜单")
-            }
+            onClicked: { menuBtnClicked() }
         }
         IconButton{
-            id: closeWiseBtn
+            id: clockWiseBtn
             width: parent.width
             height: root.btnHeight
             size: root.iconSize
             source: "pic/clockwise.png"
-
-            onClicked: {
-                console.log("旋转")
-            }
+            onClicked: { clockWiseBtnClicked() }
         }
 
         IconButton{
@@ -81,10 +72,7 @@ Rectangle {
             height: root.btnHeight
             source: "pic/close.png"
             size: root.iconSize
-            onClicked: {
-                Qt.quit()
-
-            }
+            onClicked: { closeBtnClicked() }
         }
 
     }

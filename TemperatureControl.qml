@@ -5,8 +5,6 @@ import QtQuick.Controls.Material
 // 温度控制器
 Rectangle {
     id: root
-    width: 180
-    height: 130
     color: "transparent"
     // 属性定义
     property int temperatureValue: 22
@@ -25,7 +23,7 @@ Rectangle {
         // 升温按钮
         Button {
             width: parent.width
-            height: 35
+            height: 40
             text: "^"
             font.pixelSize: 30
             background: Item{}
@@ -43,7 +41,7 @@ Rectangle {
         Text {
             id: tempText
             width: parent.width
-            height: 60
+            height: 55
             text: root.temperatureValue + "°"
             color: root.textColor
             horizontalAlignment: Text.Center
@@ -68,7 +66,7 @@ Rectangle {
         // 减温按钮
         Button {
             width: parent.width
-            height: 35
+            height: 40
             text: ">"
             font.pixelSize: 30
             background: Item{}

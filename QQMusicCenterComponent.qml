@@ -25,7 +25,7 @@ Rectangle {
         }
         RoundedIcon{
             anchors.centerIn: parent
-            iconSource: "pic/power.jpg"
+            iconSource: mainPage.songIconList[mainPage.curPlayIndex]
             size: root.perHeight*5
         }
 
@@ -36,7 +36,7 @@ Rectangle {
         height: root.perHeight*2
         anchors.top: img.bottom
         anchors.topMargin: 10
-        text: "歌名"
+        text: mainPage.songNameList[mainPage.curPlayIndex]
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize:20
         color: "white"
@@ -47,7 +47,7 @@ Rectangle {
         width: parent.width
         height: root.perHeight*1.5
         anchors.top: song.bottom
-        text: "歌词"
+        text: mainPage.songSingerList[mainPage.curPlayIndex]
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: 15
         color: "lightgray"

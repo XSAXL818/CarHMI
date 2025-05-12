@@ -10,8 +10,8 @@ Button{
     // background: Item{}
     background: Rectangle{
         anchors.fill: parent
-        color: btn.pressed ? "gray" : "transparent"
-        radius: 40
+        color: btn.pressed ? "#602b2e3b" : "transparent"
+        // radius: 40
     }
 
     Image {
