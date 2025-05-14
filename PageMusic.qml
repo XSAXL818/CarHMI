@@ -427,7 +427,7 @@ Rectangle {
         Rectangle{
             id: rect4
             width: parent.width
-            height: 160
+            height: 200
             color: "transparent"
             // color: "orange"
 
@@ -454,7 +454,7 @@ Rectangle {
                     Text{
                         width: parent.width
                         height: parent.height/2
-                        font.pixelSize: 20
+                        font.pixelSize: 30
                         text: mainPage.songNameList[mainPage.curPlayIndex] + " - " + mainPage.songSingerList[mainPage.curPlayIndex]
                         verticalAlignment: Text.AlignVCenter
                     }

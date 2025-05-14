@@ -32,8 +32,8 @@ Rectangle {
         id: msgListModel
         ListElement {iconSource:"pic/AppMarket.png" ; title:"哔哩哔哩有新版本啦~" ; content:"-修复了一些bug,为画质的优化做一些调整..."}
         ListElement {iconSource:"pic/cloudStore.png" ; title:"设备备份失败" ; content:"无法备份此设备因为可用的云存储空间已用完"}
-        ListElement {iconSource:"pic/power.png" ; title:"信息" ; content:"信息"}
-        ListElement {iconSource:"pic/power.png" ; title:"信息" ; content:"信息"}
+        // ListElement {iconSource:"pic/power.png" ; title:"信息" ; content:"信息"}
+        // ListElement {iconSource:"pic/power.png" ; title:"信息" ; content:"信息"}
     }
 
 

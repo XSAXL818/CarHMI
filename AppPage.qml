@@ -9,6 +9,15 @@ Rectangle {
     anchors.fill: parent
     color: "transparent"
 
+    Timer{
+        id: timer
+        interval: 2000
+
+        onTriggered: {
+            warningDialog.visible = false
+        }
+    }
+
     RowLayout {
         id: row1
         height: 160
@@ -22,7 +31,8 @@ Rectangle {
             iconSize: 90
 
             onClicked: {
-
+                warningDialog.visible = true
+                timer.start()
             }
         }
 
@@ -175,6 +185,49 @@ Rectangle {
                 }
             }
         }
+
+    }
+
+    Rectangle{
+        id: warningDialog
+        width: 500
+        height: 300
+        radius: 50
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: 300
+        anchors.leftMargin: 300
+        visible: false
+        color: "#ACd5dfe4"
+
+        Column{
+            anchors.fill: parent
+
+
+            Rectangle{
+                width: parent.width
+                height: parent.height/2
+                color: "transparent"
+                Image {
+                    anchors.centerIn: parent
+                    width: 100
+                    height: 100
+                    source: "pic/warning.png"
+                }
+            }
+
+
+
+            Text{
+                width: parent.width
+                height: parent.height/2
+                text:"驾驶员驾驶时禁止使用该功能！"
+                font.pixelSize: 32
+                horizontalAlignment: Text.AlignHCenter
+            }
+        }
+
+
 
     }
 

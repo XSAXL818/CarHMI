@@ -211,6 +211,7 @@ Rectangle {
             height: top.height
             anchors.left: weatherRect.right
             color: "transparent"
+            // color: "#EDe8e6e4"
 
             Text{
                 id: time1

@@ -20,6 +20,9 @@ Rectangle {
     // 用于测试
     property bool testBool: false
 
+    property bool isOpenPageBackground : false
+    property string mainPageBackgroudImage: "pic/mainPageBG3.png"
+
     // 顶部状态栏
     property double mediaVolume: 0.5
     property double navVolume: 0.4
@@ -87,7 +90,7 @@ Rectangle {
     // 地图信息
     property url homeUrl: "https://amap.com/search?query=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&city=620105&id=B0FFFX7RR5&query_type=IDQ"
     property url workUrl: "https://amap.com/search?query=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"
-    property url navToUrl: "https://amap.com/dir?from%5Bid%5D=B03A30BH0T-from&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.738439%2C36.098080&from%5Bmodxy%5D=103.731320%2C36.098125&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&to%5Blnglat%5D=103.736609%2C36.107997&to%5Bid%5D=B0FFFX7RR5-to&to%5Bpoitype%5D=141201&to%5Badcode%5D=620100&to%5Bmodxy%5D=103.733511%2C36.106616&type=car&policy=1"
+    property url navToUrl: "https://www.amap.com/dir?from%5Bid%5D=B0FFFX7RR5&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.736609%2C36.107997&from%5Bmodxy%5D=103.733511%2C36.106616&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&to%5Blnglat%5D=103.738439%2C36.098080&to%5Bid%5D=B03A30BH0T&to%5Bpoitype%5D=141201&to%5Badcode%5D=620100&to%5Bmodxy%5D=103.731320%2C36.098125&type=car&policy=1"
     property url defaultMapUrl: "https://amap.com/"
 
 
@@ -117,8 +120,8 @@ Rectangle {
         }
 
         onBackBtnClicked: {
-            if( right.isDrawerOpened() ){
-                right.closeDrawer()
+            if( mainPageRightPart.isDrawerOpened() ){
+                mainPageRightPart.closeDrawer()
             } else {
                 // 执行页面退栈逻辑
             }
@@ -250,8 +253,8 @@ Rectangle {
 
         // 获取天气信息
         Component.onCompleted: {
-            // fetchDesc()
-            // fetchWeather()
+            fetchDesc()
+            fetchWeather()
         }
     }
 

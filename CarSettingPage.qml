@@ -47,7 +47,7 @@ Rectangle {
 
             property int currentIndex: 0
 
-            property var btnNames: ["智能底盘","灯光氛围","迎宾","智能记忆","空调","门窗和锁","智能提醒"]
+            property var btnNames: ["智能底盘","灯光氛围","抬头显示","迎宾","智能记忆","空调","门窗和锁","智能提醒"]
             // 按钮容器
             Row {
                 anchors.fill: parent

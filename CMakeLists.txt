@@ -61,6 +61,9 @@ qt_add_qml_module(appCarHMI
         RESOURCES pic/game.png
         SOURCES ProcessLauncher.h
         QML_FILES LineParticles.qml
+        RESOURCES pic/mainPageBG1.png
+        RESOURCES pic/mainPageBG2.png pic/mainPageBG3.png
+        RESOURCES pic/warning.png
 
 )
 

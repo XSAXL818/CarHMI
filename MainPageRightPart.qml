@@ -10,6 +10,13 @@ Rectangle {
     height: parent.height
     color: "#602b2e3b"
 
+    Image {
+        id: mainPageBackgroud
+        anchors.fill: parent
+        visible: mainPage.isOpenPageBackground
+        source: mainPage.mainPageBackgroudImage
+    }
+
     property bool isShowBackground: false
     property string backgroundImgSource: ""
 
@@ -53,10 +60,45 @@ Rectangle {
             orientation: ListView.Horizontal
 
             delegate: Image {
-                id: name
                 height: 30
                 width: 30
                 source: "pic/notification.png"
+            }
+        }
+
+
+        Row{
+            anchors.right: parent.right
+            anchors.top: parent.top
+            width: rTop.width/2
+            height: rTop.height
+            layoutDirection: Qt.RightToLeft
+
+            Text{
+                width: 30
+                height: 1
+            }
+            spacing: 10
+
+            Image {
+                height: 30
+                width: 30
+                visible: mainPage.isBluetoothOn
+                source: "pic/elect3.png"
+            }
+
+            Image {
+                height: 30
+                width: 30
+                visible: mainPage.isWIFIOn
+                source: "pic/wifi_white.png"
+            }
+
+            Image {
+                height: 30
+                width: 30
+                visible: mainPage.isBluetoothOn
+                source: "pic/bluetooth_white.png"
             }
         }
 
@@ -158,12 +200,12 @@ Rectangle {
             anchors.fill: parent
 
             onLeftTemperatureChanged: (temp) => {
-                console.log("温度(左)调节为："+temp)
-            }
+                                          console.log("温度(左)调节为："+temp)
+                                      }
 
             onRightTemperatureChanged: (temp) => {
-                console.log("温度(右)调节为："+temp)
-            }
+                                           console.log("温度(右)调节为："+temp)
+                                       }
 
             onCarBtnClick: {
                 console.log("bottom-car")

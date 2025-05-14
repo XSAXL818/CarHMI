@@ -18,8 +18,8 @@ Rectangle {
         anchors.fill: parent
 
         system: particleSystem
-        emitRate: 5000
-        lifeSpan: 2000
+        emitRate: 2000
+        lifeSpan: 2500
         lifeSpanVariation: 500
         size: 0.1
 
