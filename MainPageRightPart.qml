@@ -298,7 +298,7 @@ Rectangle {
     function clickNavBackHome(){
         mainPage.defaultMapUrl = mainPage.navToUrl
         controlsBelow.navigationBtnClick()
-        mainPage.defaultMapUrl = "https://amap.com/"
+        mainPage.defaultMapUrl = mainPage.homeUrl
     }
 
     Component.onCompleted: {

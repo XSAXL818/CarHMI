@@ -88,11 +88,11 @@ Rectangle {
     property bool isOpenPar2: false
 
     // 地图信息
-    property url homeUrl: "https://amap.com/search?query=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&city=620105&id=B0FFFX7RR5&query_type=IDQ"
-    property url workUrl: "https://amap.com/search?query=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6"
-    property url navToUrl: "https://www.amap.com/dir?from%5Bid%5D=B0FFFX7RR5&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.736609%2C36.107997&from%5Bmodxy%5D=103.733511%2C36.106616&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&to%5Blnglat%5D=103.738439%2C36.098080&to%5Bid%5D=B03A30BH0T&to%5Bpoitype%5D=141201&to%5Badcode%5D=620100&to%5Bmodxy%5D=103.731320%2C36.098125&type=car&policy=1"
-    property url defaultMapUrl: "https://amap.com/"
-
+    property string homeUrl: "https://amap.com/dir?from%5Bid%5D=B03A30BH0T-from&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.738439%2C36.098080&from%5Bmodxy%5D=103.731320%2C36.098125&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bid%5D=B0FFFX7RR5&to%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&to%5Blnglat%5D=103.736609%2C36.107997&to%5Bmodxy%5D=103.733511%2C36.106616&to%5Bpoitype%5D=141201&to%5Badcode%5D=620105&type=car&policy=1&dateTime=now"
+    property string workUrl: "https://amap.com/dir?from%5Bid%5D=B03A30BH0T&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.738439%2C36.098080&from%5Bmodxy%5D=103.731320%2C36.098125&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bname%5D=%E5%85%B0%E5%B7%9E%E4%B8%AD%E5%BF%83&to%5Blnglat%5D=103.774761%2C36.069013&to%5Bid%5D=B0FFFZRDD9&to%5Bpoitype%5D=060101&to%5Badcode%5D=620100&to%5Bmodxy%5D=103.775146%2C36.067658&type=car&policy=1&dateTime=now"
+    property string navToUrl: "https://www.amap.com/dir?from%5Bid%5D=B0FFFX7RR5&from%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E7%9F%A5%E8%A1%8C%E6%A0%A1%E5%8C%BA)&from%5Blnglat%5D=103.736609%2C36.107997&from%5Bmodxy%5D=103.733511%2C36.106616&from%5Bpoitype%5D=141201&from%5Badcode%5D=620105&to%5Bname%5D=%E8%A5%BF%E5%8C%97%E5%B8%88%E8%8C%83%E5%A4%A7%E5%AD%A6(%E4%BA%91%E4%BA%AD%E6%A0%A1%E5%8C%BA)&to%5Blnglat%5D=103.738439%2C36.098080&to%5Bid%5D=B03A30BH0T&to%5Bpoitype%5D=141201&to%5Badcode%5D=620100&to%5Bmodxy%5D=103.731320%2C36.098125&type=car&policy=1"
+    property string defaultMapUrl: "https://amap.com/"
+    property string chargeUrl: "https://amap.com/search?query=%E5%85%85%E7%94%B5%E7%AB%99&city=620100&geoobj=103.89656%7C35.984714%7C104.041617%7C36.054515&zoom=13.54"
 
 
     property string blueColor: "#52afd5"

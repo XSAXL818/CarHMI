@@ -11,8 +11,7 @@ Rectangle{
     anchors.fill: parent
 
 
-    property string defaultUrl: mainPage.defaultMapUrl
-    // property string defaultUrl:"https://game.163.com/?author_urs=liuhuanghun@163.com&lid=2&pid=1"
+    property string currentMapUrl: mainPage.defaultMapUrl
 
     WebEngineView {
         id: webView
@@ -22,7 +21,7 @@ Rectangle{
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 100
-        url: root.defaultUrl
+        url: root.currentMapUrl
 
         // 添加这些属性配置
         settings {
@@ -70,8 +69,7 @@ Rectangle{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        console.log(root.defaultUrl === mainPage.navToUrl)
-                        webView.url = mainPage.navToUrl
+                        root.currentMapUrl = mainPage.homeUrl
                     }
                 }
             }
@@ -85,6 +83,30 @@ Rectangle{
                     text: "回公司"
                     font.pixelSize: 24
                     anchors.centerIn: parent
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        root.currentMapUrl = mainPage.workUrl
+                    }
+                }
+            }
+            Rectangle{
+                width: 150
+                height: 75
+                radius: 75
+                color:"#DD52afd5"
+
+                Text {
+                    text: "充电站"
+                    font.pixelSize: 24
+                    anchors.centerIn: parent
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        root.currentMapUrl = mainPage.chargeUrl
+                    }
                 }
             }
         }
